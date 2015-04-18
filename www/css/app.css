@@ -11,9 +11,14 @@
 .text-center{
 	text-align: center;
 }
+#login-page {
+	max-width: 600px;
+	margin: 0 auto;
+
+}
 #login-page div[data-role=content]{
-	position: relative;
-	top: 50%;
+	position: absolute;
+	top: 42%;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
