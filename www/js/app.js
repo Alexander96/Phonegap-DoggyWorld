@@ -11,11 +11,11 @@ $(function () {
     $("[data-role=panel]").panel().enhanceWithin();
 
     //auto login
-    /*if(window.localStorage.getItem("username")!=null){
+    if(window.localStorage.getItem("username")!=null){
     	$('[name="uname"]').val(window.localStorage.getItem("username"));
     	$('[name="password"]').val(window.localStorage.getItem("password"));
     	loginForm();
-    }*/
+    }
 });
 function loginForm(){
 	var uname = $('[name="uname"]').val();
