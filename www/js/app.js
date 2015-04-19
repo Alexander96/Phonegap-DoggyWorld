@@ -1,7 +1,7 @@
 var curUser = null;
 var dogs = [];
 var domain = "http://pupmates.net/";
-domain = "http://localhost:1234/"
+//domain = "http://localhost:1234/"
 $(document).on("pagecreate", function () {
     $("[data-role=panel]").one("panelbeforeopen", function () {
         var height = $.mobile.pageContainer.pagecontainer("getActivePage").outerHeight();
