@@ -1,5 +1,7 @@
 var curUser = null;
+var dogs = [];
 var domain = "http://pupmates.net/";
+domain = "http://localhost:1234/"
 $(document).on("pagecreate", function () {
     $("[data-role=panel]").one("panelbeforeopen", function () {
         var height = $.mobile.pageContainer.pagecontainer("getActivePage").outerHeight();
@@ -25,7 +27,7 @@ function loginForm(){
 		password: pass
 	};
 
-	//testing localStorage for auto login implementation
+	//local storage so when the application is started again to login automatically
 	window.localStorage.setItem("username", uname);
 	window.localStorage.setItem("password", pass);
 
@@ -38,7 +40,7 @@ function loginForm(){
 	    	if(data.success){
 	    		console.log(data.user);
 	    		curUser = data.user;
-	    		curUser.profPhoto = "/img/profPhoto/" + curUser._id;
+	    		curUser.profPhoto = domain+"img/profPhoto/" + curUser._id;
 	    		$("#output").html("<h2>" + curUser.firstName + "</h2>");
 	    		$.mobile.changePage("#home-page", {reverse: false, transition: "slide"});
 	    	}
@@ -80,4 +82,49 @@ function closeFriendsMenu(){
 }
 function closeMainMenu(){
 	$( "#main-menu" ).panel( "close");
+}
+$(document).delegate('#home-page', 'pagebeforeshow', function () {
+    $.ajax({
+	    url: domain + 'achievments/aquired/' + curUser._id,
+	    type: 'GET',
+	    error : function (){ document.title='error'; }, 
+	    success: function (data) {
+	    	console.log(data);
+	    }
+	});
+});
+$(document).delegate('#dogs-page', 'pagebeforeshow', function () {
+    $.ajax({
+	    url: domain + 'dogs/' + curUser._id,
+	    type: 'GET',
+	    error : function (){ document.title='error'; }, 
+	    success: function (data) {
+	    	if(data){
+	    		dogs = data;
+	    		console.log(data);
+	    		for(var i=0;i<dogs.length;i++){
+	    			dogs[i].profPhoto = domain + "curUser._id"+"/imgdog/"+dogs[i]._id;
+	    		}
+	    		loadDogs();
+	    	}
+	    }
+	});
+});
+function loadDogs(){
+	var template = '';
+	for(var i=0;i<dogs.length;i++){
+		template += '<div class="dog-container" onclick="dogClick(' +"'" +dogs[i]._id+ "'" + ')">'
+		template +=  '<h3 class="dog-field">' + dogs[i].name + '</h3>';
+		template += '<p class="dog-field">' + dogs[i].breed+'</p>';
+		template += '<p class="dog-field">'+dogs[i].birthDate+'</p>';
+		template += '<div class="dog-img-container"><img src="' + dogs[i].profPhoto + '" /></div>';
+		template += '<p class="dog-field">'+dogs[i].description+'</p>';
+		template += '</div>';
+
+	}
+	$("#dogs-content").html(template);
+
+}
+function dogClick(dogId){
+	alert(dogId);
 }

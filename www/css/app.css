@@ -1,3 +1,7 @@
+p,h1,h2,h3,h4,h5,img{
+	margin: 0;
+	padding: 0;
+}
 .logo-container {
     width: 90%;
     margin-left: 5%;
@@ -22,4 +26,30 @@
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+}
+.dog-container{
+	width: 95%;
+	margin-bottom: 5px;
+	border: 1px solid #eaeaea;
+	border-radius: 5px;
+	background-color: #fff;
+	color: #424345;
+	text-align: center;
+}
+.dog-img-container{
+	width: 95%;
+	margin: 0 auto;
+	max-height: 200px;
+	max-width: 200px;
+	border: 1px solid #eaeaea;
+	border-radius: 5px;
+}
+.dog-img-container img{
+	width: 95%;
+	padding: 5px;
+	border-radius: 8px;
+}
+.dog-field{
+	padding-top: 2px;
+	padding-bottom: 4px;
 }
