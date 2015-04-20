@@ -12,6 +12,7 @@
     <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/swipeupdown.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/dog-page.js"></script>
 </head>
 <body>
     <!-- page -->
@@ -37,7 +38,7 @@
     <div class="page" data-role="page" id="home-page" data-theme="b">
         <div data-role="header" class="app-header">
             <a href="#main-menu" class="ui-btn ui-icon-bullets ui-btn-icon-left">Menu</a>
-            <h1 id="home-title">Home</h1>
+            <h1>Home</h1>
             <a href="#friends-menu" class="ui-btn ui-icon-user ui-btn-icon-right">Friends</a>
         </div>
         <!-- testing the ajax -->
@@ -50,14 +51,50 @@
     <div class="page" data-role="page" id="dogs-page" data-theme="b">
         <div data-role="header" class="app-header">
             <a href="#main-menu" class="ui-btn ui-icon-bullets ui-btn-icon-left">Menu</a>
-            <h1 id="home-title">Dogs</h1>
+            <h1>Dogs</h1>
             <a href="#friends-menu" class="ui-btn ui-icon-user ui-btn-icon-right">Friends</a>
         </div>
         <div id="dogs-content" data-role="content">
             
         </div>
     </div>
-
+    <div class="page" data-role="page" id="one-dog-page" data-theme="b">
+        <div>
+            <div data-role="header" class="app-header">
+                <a href="#main-menu" class="ui-btn ui-icon-bullets ui-btn-icon-left">Menu</a>
+                    <h1 id="one-dog-page-title"></h1>
+                <a href="#friends-menu" class="ui-btn ui-icon-user ui-btn-icon-right">Friends</a>
+            </div>
+            <div id="one-dog-page-content" data-role="content">
+                <div class="dog-container">
+                    <h3 name="dog-name" class="dog-field">Name</h3>
+                    <p name="dog-breed" class="dog-field">Breed</p>
+                    <p name="dog-birthdate" class="dog-field">Birthdate</p>
+                    <div name="dog-image" class="dog-img-container"><img src="" /></div>
+                    <p name="dog-description" class="dog-field">description</p>
+                    <a href="#edit-dog-dialog" class="edit-btn ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="slidedown">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="edit-dog-dialog" data-close-btn="right" data-overlay-theme="b" data-theme="b">
+        <div data-theme="b" data-role="header">
+            <h2>Edit</h2>
+        </div>
+        <div role="main" data-theme="b" class="ui-content">
+            <h3 class="dog-field edit-dog-field-title">Name</h3>
+            <input class="edit-input" type="text" name="dog-name" />
+            <p class="dog-field edit-dog-field-title">Breed</p>
+            <input class="edit-input" type="text" name="dog-breed" />
+            <p class="dog-field edit-dog-field-title">BirthDate</p>
+            <input class="edit-input" type="date" data-clear-btn="true" name="dog-birthdate" >
+            <p class="dog-field edit-dog-field-title">Picture</p>
+            <input class="edit-input" type="file" name="dog-image" accept="image/*" capture>
+            <p class="dog-field edit-dog-field-title">Description</p>
+            <input class="edit-input" type="text" name="dog-description" />
+            <button data-role="button" onclick="saveDog()" class="ui-link ui-btn ui-btn-b ui-shadow ui-corner-all">Save</button>
+        </div>
+    </div>
     <div data-role="panel" id="main-menu" data-position="left" data-display="reveal" data-theme="b">
         <h2 class="text-center">Menu</h2>
         <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">

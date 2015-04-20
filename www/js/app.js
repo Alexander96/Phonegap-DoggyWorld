@@ -1,7 +1,14 @@
 var curUser = null;
 var dogs = [];
 var domain = "http://pupmates.net/";
-//domain = "http://localhost:1234/"
+domain = "http://localhost:1234/";
+
+var pages = {
+	Home: "home-page",
+	Login: "login-page",
+	Dogs: "dogs-page",
+	OneDog: "one-dog-page"
+}
 $(document).on("pagecreate", function () {
     $("[data-role=panel]").one("panelbeforeopen", function () {
         var height = $.mobile.pageContainer.pagecontainer("getActivePage").outerHeight();
@@ -60,18 +67,19 @@ function signout(){
 	    data: curUser,
 	    error : function (){ document.title='error'; }, 
 	    success: function (data) {
-    		$.mobile.changePage("#login-page", {reverse: false, transition: "fade"});
+    		$.mobile.changePage("#" + pages.Login, {reverse: false, transition: "fade"});
 	    }
 	});
 
 }
 function goHome(){
-	$.mobile.changePage("#home-page", {reverse: false, transition: "slide"});
+	$.mobile.changePage("#" + page.Home, {reverse: false, transition: "slide"});
 }
 function goToPage(pageChange){
 	var activePage = $.mobile.activePage.attr('id');
 	if(activePage == pageChange){
 		$( "#main-menu" ).panel( "close");
+		$("#friends-menu").panel("close");
 	}
 	else{
 		$.mobile.changePage("#" + pageChange, {reverse: false, transition: "pop"});
@@ -83,17 +91,17 @@ function closeFriendsMenu(){
 function closeMainMenu(){
 	$( "#main-menu" ).panel( "close");
 }
-$(document).delegate('#home-page', 'pagebeforeshow', function () {
-    $.ajax({
+$(document).delegate('#' + pages.Home, 'pagebeforeshow', function () {
+    /*$.ajax({
 	    url: domain + 'achievments/aquired/' + curUser._id,
 	    type: 'GET',
 	    error : function (){ document.title='error'; }, 
 	    success: function (data) {
 	    	console.log(data);
 	    }
-	});
+	});*/
 });
-$(document).delegate('#dogs-page', 'pagebeforeshow', function () {
+$(document).delegate('#' + pages.Dogs, 'pagebeforeshow', function () {
     $.ajax({
 	    url: domain + 'dogs/' + curUser._id,
 	    type: 'GET',
@@ -110,21 +118,3 @@ $(document).delegate('#dogs-page', 'pagebeforeshow', function () {
 	    }
 	});
 });
-function loadDogs(){
-	var template = '';
-	for(var i=0;i<dogs.length;i++){
-		template += '<div class="dog-container" onclick="dogClick(' +"'" +dogs[i]._id+ "'" + ')">'
-		template +=  '<h3 class="dog-field">' + dogs[i].name + '</h3>';
-		template += '<p class="dog-field">' + dogs[i].breed+'</p>';
-		template += '<p class="dog-field">'+dogs[i].birthDate+'</p>';
-		template += '<div class="dog-img-container"><img src="' + dogs[i].profPhoto + '" /></div>';
-		template += '<p class="dog-field">'+dogs[i].description+'</p>';
-		template += '</div>';
-
-	}
-	$("#dogs-content").html(template);
-
-}
-function dogClick(dogId){
-	alert(dogId);
-}
