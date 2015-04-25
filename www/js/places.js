@@ -15,6 +15,24 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map-canvas"),
             myOptions);
 }
+function renderPlaces(places, curUser){
+  var template = "";
+  for(var i=0;i<places.length;i++){
+    template += '<div class="places-container"><div class="places-img-container">';
+    if(curUser) template += '<img src="http://pupmates.net/img/marker-blue.png">';
+    else template += '<img src="http://pupmates.net/img/marker-green.png">';
+    template +='</div><div class="places-name">' + places[i].name + "</div>";
+    template += '<div class="places-rate"> | rate: ' + places[i].rate + '</div>';
+    template += '<div class="places-description">' + places[i].description + '</div>';
+    template += '<div class="places-buttons"><button class="ui-btn ui-icon-navigation ui-btn-icon-right" onclick="viewPlace(' +"'" +places[i]._id+ "'" + ')">View on Map</button>';
+    if(curUser)
+      template += '<button class="ui-btn ui-icon-delete ui-btn-icon-right" onclick="deletePlace(' +"'" +places[i]._id+ "'" + ')">Delete</button>';
+    template += '</div>';
+    template += '</div>';
+  }
+  if(curUser) $("#fragment-1").html(template);
+  else $("#fragment-2").html(template);
+}
 $(document).delegate('#' + pages.Places, 'pageshow', function () {
 	initialize();
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -31,6 +49,7 @@ $(document).delegate('#' + pages.Places, 'pageshow', function () {
         markersCurUser = PlacesService.displayPlaces(map, places, true);
         PlacesService.openInfoMarkerArray(map, markersCurUser, placesCurUser);
         PlacesService.setCenter(map, curLatLng);
+        renderPlaces(placesCurUser, true);
       }
   });
   $.ajax({
@@ -45,6 +64,7 @@ $(document).delegate('#' + pages.Places, 'pageshow', function () {
         markersOtherUsers = PlacesService.displayPlaces(map, places, false);
         PlacesService.openInfoMarkerArray(map, markersOtherUsers, placesOtherUsers);
         PlacesService.setCenter(map, curLatLng);
+        renderPlaces(placesOtherUsers, false);
       }
   });
 });
@@ -69,4 +89,10 @@ function onError(error) {
 	//error.code
 	//error.message
 	console.log("couldnt get current location");
+}
+function viewPlace(id){
+  alert(id);
+}
+function deletePlace(id){
+  alert(id);
 }

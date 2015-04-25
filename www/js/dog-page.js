@@ -25,7 +25,7 @@ function loadDogs(){
 		template += '<p class="dog-field">'+dogs[i].birthDate+'</p>';
 		template += '<div class="dog-img-container"><img src="' + dogs[i].profPhoto + '" /></div>';
 		template += '<p class="dog-field">'+dogs[i].description+'</p>';
-		template += '<a href="#edit-dog-dialog" class="edit-btn ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="pop">Edit</a>';
+		template += '<a href="#edit-dog-dialog" class="edit-btn ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="slide">Edit</a>';
 		template += '</div>';
 
 	}
