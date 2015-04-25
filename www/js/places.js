@@ -1,17 +1,19 @@
+var map;
 function initialize() {
-    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var latlng = new google.maps.LatLng(42.4192551, 25.6248617);
     var myOptions = {
         zoom: 15,
         center: latlng
     };
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
+    map = new google.maps.Map(document.getElementById("map-canvas"),
             myOptions);
 }
 $(document).delegate('#' + pages.Places, 'pageshow', function () {
 	initialize();
-	alert("loaded");
-})
+});
 var onSuccess = function(position) {
+	var lat = position.coords.latitude,
+		lon = position.coords.longtitude;
     alert('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
           'Altitude: '          + position.coords.altitude          + '\n' +
@@ -20,13 +22,15 @@ var onSuccess = function(position) {
           'Heading: '           + position.coords.heading           + '\n' +
           'Speed: '             + position.coords.speed             + '\n' +
           'Timestamp: '         + position.timestamp                + '\n');
+    map.setCenter(new GLatLng(lat, lon));
 };
 
 // onError Callback receives a PositionError object
 //
 function onError(error) {
-    alert('code: '    + error.code    + '\n' +
-          'message: ' + error.message + '\n');
+	//error.code
+	//error.message
+	console.log("couldnt get current location");
 }
 
 navigator.geolocation.getCurrentPosition(onSuccess, onError);
