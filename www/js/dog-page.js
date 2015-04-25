@@ -8,13 +8,14 @@ function loadDogs(){
 		template += '<p class="dog-field">'+dogs[i].birthDate+'</p>';
 		template += '<div class="dog-img-container"><img src="' + dogs[i].profPhoto + '" /></div>';
 		template += '<p class="dog-field">'+dogs[i].description+'</p>';
+		template += '<a href="#edit-dog-dialog" class="edit-btn ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="pop">Edit</a>';
 		template += '</div>';
 
 	}
 	$("#dogs-content").html(template);
 
 }
-function dogClick(dogId){
+/*function dogClick(dogId){
 	for(var i=0;i<dogs.length;i++){
 		if(dogs[i]._id == dogId){
 			clickedDog = dogs[i];
@@ -26,7 +27,7 @@ function dogClick(dogId){
 	
 	goToPage(pages.OneDog);
 
-}
+}*/
 function loadDogCurDog(){
 	$("h3[name=dog-name]").html(clickedDog.name);
 	$("p[name=dog-breed]").html(clickedDog.breed);

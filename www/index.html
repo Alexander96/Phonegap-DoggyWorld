@@ -11,8 +11,10 @@
     <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/swipeupdown.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNE5LBivJlaVumJO0XHdMEumfl2bg2H5o"></script>
     <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/dog-page.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/places.js"></script>
 </head>
 <body>
     <!-- page -->
@@ -58,25 +60,18 @@
             
         </div>
     </div>
-    <div class="page" data-role="page" id="one-dog-page" data-theme="b">
-        <div>
-            <div data-role="header" class="app-header">
-                <a href="#main-menu" class="ui-btn ui-icon-bullets ui-btn-icon-left">Menu</a>
-                    <h1 id="one-dog-page-title"></h1>
-                <a href="#friends-menu" class="ui-btn ui-icon-user ui-btn-icon-right">Friends</a>
-            </div>
-            <div id="one-dog-page-content" data-role="content">
-                <div class="dog-container">
-                    <h3 name="dog-name" class="dog-field">Name</h3>
-                    <p name="dog-breed" class="dog-field">Breed</p>
-                    <p name="dog-birthdate" class="dog-field">Birthdate</p>
-                    <div name="dog-image" class="dog-img-container"><img src="" /></div>
-                    <p name="dog-description" class="dog-field">description</p>
-                    <a href="#edit-dog-dialog" class="edit-btn ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="pop">Edit</a>
-                </div>
-            </div>
+
+    <div class="page" data-role="page" id="places-page" data-theme="b">
+        <div data-role="header" class="app-header">
+            <a href="#main-menu" class="ui-btn ui-icon-bullets ui-btn-icon-left">Menu</a>
+            <h1>Places</h1>
+            <a href="#friends-menu" class="ui-btn ui-icon-user ui-btn-icon-right">Friends</a>
+        </div>
+        <div id="places-content" data-role="content">
+            <div id="map-canvas"></div>
         </div>
     </div>
+
     <div data-role="page" id="edit-dog-dialog" data-close-btn="right" data-overlay-theme="b" data-theme="b">
         <div data-theme="b" data-role="header">
             <h2>Edit</h2>
@@ -107,6 +102,13 @@
                 <div class="ui-btn-inner ui-li">
                     <div class="ui-btn-inner ui-li">
                     <button onclick="goToPage('dogs-page')" data-transition="pop" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">My Dogs</button>
+                </div>
+                </div>
+            </li>
+            <li data-corners="false" data-shadow="false" data-wrapperels="div"  data-theme="b">
+                <div class="ui-btn-inner ui-li">
+                    <div class="ui-btn-inner ui-li">
+                    <button onclick="goToPage('places-page')" data-transition="pop" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">Places</button>
                 </div>
                 </div>
             </li>
