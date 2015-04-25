@@ -22,7 +22,7 @@ var onSuccess = function(position) {
           'Heading: '           + position.coords.heading           + '\n' +
           'Speed: '             + position.coords.speed             + '\n' +
           'Timestamp: '         + position.timestamp                + '\n');
-    map.setCenter(new GLatLng(lat, lon));
+    map.setCenter(new google.maps.LatLng(lat, lon));
 };
 
 // onError Callback receives a PositionError object
