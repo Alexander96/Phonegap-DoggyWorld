@@ -13,7 +13,7 @@ $(document).delegate('#' + pages.Places, 'pageshow', function () {
 });
 var onSuccess = function(position) {
 	var lat = position.coords.latitude,
-		lon = position.coords.longtitude;
+		lon = position.coords.longitude;
     alert('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
           'Altitude: '          + position.coords.altitude          + '\n' +
