@@ -43,6 +43,16 @@ var PlacesService = {
 		if(marker)
 			marker.setMap(null);
 	},
+	setCenter: function(map, curLatLng){
+
+		if(!curLatLng){
+			curLatLng = new google.maps.LatLng(42.4192551, 25.6248617);
+			console.log("curLatLng: " + curLatLng);
+		}
+		if(map){
+			map.setCenter(curLatLng);
+		}
+	},
 	setLatLngObj: function (place){	//sets the lat and lng of a place (return from the database)
 		var location = new google.maps.LatLng(place.lat * 1, place.lng * 1);
 		place.location = location;
