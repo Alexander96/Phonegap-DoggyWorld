@@ -1,14 +1,14 @@
 var curUser = null;
 var dogs = [];
 var domain = "http://pupmates.net/";
-//domain = "http://localhost:1234/";
+//domain = "http://localhost:1234/",
+user_id_access_token = "";
 
 var pages = {
 	Home: "home-page",
 	Login: "login-page",
 	Dogs: "dogs-page",
-	Places: "places-page",
-	Chat: "chat-page"
+	Places: "places-page"
 }
 $(document).on("pagecreate", function () {
     $("[data-role=panel]").one("panelbeforeopen", function () {
@@ -40,7 +40,7 @@ function loginForm(){
 	window.localStorage.setItem("password", pass);
 
 	$.ajax({
-	    url: domain + 'login',
+	    url: domain + 'login?method=login&returnformat=json',
 	    type: 'POST',
 	    data: user,
 	    error : function (){ document.title='error'; }, 
@@ -49,8 +49,9 @@ function loginForm(){
 	    		console.log(data.user);
 	    		curUser = data.user;
 	    		curUser.profPhoto = domain+"img/profPhoto/" + curUser._id;
+	    		user_id_access_token = curUser._id;
 	    		$("#output").html("<h2>" + curUser.firstName + "</h2>");
-	    		$.mobile.changePage("#home-page", {reverse: false, transition: "slide"});
+	    		$.mobile.changePage("#" + pages.Home, {reverse: false, transition: "slide"});
 	    	}
 	    }
 	});
@@ -60,8 +61,8 @@ function loginForm(){
 	return false;
 }
 function signout(){
-	/*window.localStorage.setItem("username", null);
-	window.localStorage.setItem("password", null);*/
+	window.localStorage.setItem("username", null);
+	window.localStorage.setItem("password", null);
 	$.ajax({
 	    url: domain + 'logout',
 	    type: 'POST',
@@ -92,30 +93,3 @@ function closeFriendsMenu(){
 function closeMainMenu(){
 	$( "#main-menu" ).panel( "close");
 }
-$(document).delegate('#' + pages.Home, 'pagebeforeshow', function () {
-    /*$.ajax({
-	    url: domain + 'achievments/aquired/' + curUser._id,
-	    type: 'GET',
-	    error : function (){ document.title='error'; }, 
-	    success: function (data) {
-	    	console.log(data);
-	    }
-	});*/
-});
-$(document).delegate('#' + pages.Dogs, 'pagebeforeshow', function () {
-    $.ajax({
-	    url: domain + 'dogs/' + curUser._id,
-	    type: 'GET',
-	    error : function (){ document.title='error'; }, 
-	    success: function (data) {
-	    	if(data){
-	    		dogs = data;
-	    		console.log(data);
-	    		for(var i=0;i<dogs.length;i++){
-	    			dogs[i].profPhoto = domain + "curUser._id"+"/imgdog/"+dogs[i]._id;
-	    		}
-	    		loadDogs();
-	    	}
-	    }
-	});
-});

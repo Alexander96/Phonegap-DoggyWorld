@@ -1,3 +1,20 @@
+$(document).delegate('#' + pages.Dogs, 'pagebeforeshow', function () {
+    $.ajax({
+	    url: domain + 'dogs/' + curUser._id,
+	    type: 'GET',
+	    error : function (){ document.title='error'; }, 
+	    success: function (data) {
+	    	if(data){
+	    		dogs = data;
+	    		console.log(data);
+	    		for(var i=0;i<dogs.length;i++){
+	    			dogs[i].profPhoto = domain + "curUser._id"+"/imgdog/"+dogs[i]._id;
+	    		}
+	    		loadDogs();
+	    	}
+	    }
+	});
+});
 var clickedDog;
 function loadDogs(){
 	var template = '';

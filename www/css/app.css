@@ -69,4 +69,12 @@ p,h1,h2,h3,h4,h5,img,div,section{
 	padding: 0;
 	width: 100%;
 	height: 100%;
+	color: #000;
+}
+.markerNameInfo{
+	color: #0CA2FF;
+	min-height: 2px;
+	margin-bottom: 3px;
+	text-align: center;
+	border-bottom: 1px solid #0CA2FF;
 }
