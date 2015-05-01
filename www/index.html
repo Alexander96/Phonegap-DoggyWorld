@@ -38,7 +38,6 @@
                 <input name="password" type="password" placeholder="Password">
                 <input type="submit" value="Login">
             </form>
-            <button onclick="goHome()">Home</button>
         </div>
     </div>
     <!-- page -->
@@ -51,7 +50,15 @@
         </div>
         <!-- testing the ajax -->
         <div data-role="content">
-            <div id="output">
+            <div class="main-left-data">
+                <div class="main-img-container">
+                    <img src="http://pupmates.net/img/profPhoto/54f5d006fc8b5303000e3b07">
+                </div>
+            </div>
+            <div class="main-right-data">
+                <h3>Alexander</h3>
+                <h3>Yordanov</h3>
+                <a href="#edit-profile-dialog" class="edit-btn ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="slide">Edit</a>
             </div>
         </div>
     </div>
@@ -133,6 +140,14 @@
             <p class="dog-field edit-dog-field-title">Description</p>
             <input class="edit-input" type="text" name="dog-description" />
             <button data-role="button" onclick="saveDog()" class="ui-link ui-btn ui-btn-b ui-shadow ui-corner-all">Save</button>
+        </div>
+    </div>
+    <div data-role="page" id="edit-profile-dialog" data-close-btn="right" data-overlay-theme="b" data-theme="b">
+        <div data-theme="b" data-role="header">
+            <h2>Edit</h2>
+        </div>
+        <div role="main" data-theme="b" class="ui-content">
+            <button data-role="button" onclick="saveProfile()" class="ui-link ui-btn ui-btn-b ui-shadow ui-corner-all">Save</button>
         </div>
     </div>
     <div data-role="panel" id="main-menu" data-position="left" data-display="reveal" data-theme="b">

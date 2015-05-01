@@ -61,6 +61,9 @@ function loginForm(){
 
 	return false;
 }
+function saveProfile(){
+	$( "#edit-profile-dialog" ).dialog( "close" );
+}
 function signout(){
 	window.localStorage.setItem("username", null);
 	window.localStorage.setItem("password", null);

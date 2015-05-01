@@ -32,33 +32,42 @@ function loadDogs(){
 	$("#dogs-content").html(template);
 
 }
-/*function dogClick(dogId){
+function dogClick(dogId){
 	for(var i=0;i<dogs.length;i++){
 		if(dogs[i]._id == dogId){
 			clickedDog = dogs[i];
 			break;
 		}
 	}
-	$("#" + pages.OneDog +"-title").html(clickedDog.name);
 	loadDogCurDog();
-	
-	goToPage(pages.OneDog);
 
-}*/
+}
 function loadDogCurDog(){
-	$("h3[name=dog-name]").html(clickedDog.name);
-	$("p[name=dog-breed]").html(clickedDog.breed);
-	$("p[name=dog-birthdate]").html(clickedDog.birthDate);
-	$("div[name=dog-image]>img").attr("src", clickedDog.profPhoto);
-	$("p[name=dog-description]").html(clickedDog.description);
+	$("[name=dog-name]").val(clickedDog.name);
+	$("[name=dog-breed]").val(clickedDog.breed);
+	var splitted = clickedDog.birthDate.split("/");
+	if(splitted[0] * 1 < 10) splitted[0] = "0" + splitted[0];
+	if(splitted[1] * 1 < 10) splitted[1] = "0" + splitted[1];
+	var d = splitted[2] + "-" + splitted[1] + "-" +splitted[0];
+	console.log(d);
+	$("[name=dog-birthdate]").val(d);
+	$("[name=dog-description]").val(clickedDog.description);
 }
 function saveDog(){
 	$( "#edit-dog-dialog" ).dialog( "close" );
+
+	// /updateDog/:userId/:dogId
+	//put
 }
-$("input[name=dog-image]").change(function(){
-    var file = $("input[type=file]")[0].files[0];
-    alert(file.name + "\n" +
-          file.type + "\n" + 
-          file.size + "\n" + 
-          file.lastModifiedDate);
-});
+var files;
+
+// Add events
+$('input[type=file]').on('change', prepareUpload);
+
+// Grab the files and set them to our variable
+function prepareUpload(event)
+{
+  files = event.target.files;
+  console.log(files);
+  alert(files);
+}
