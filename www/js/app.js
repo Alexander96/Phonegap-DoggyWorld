@@ -65,8 +65,8 @@ function saveProfile(){
 	$( "#edit-profile-dialog" ).dialog( "close" );
 }
 function signout(){
-	window.localStorage.setItem("username", null);
-	window.localStorage.setItem("password", null);
+	window.localStorage.setItem("username", "");
+	window.localStorage.setItem("password", "");
 	$.ajax({
 	    url: domain + 'logout',
 	    type: 'POST',

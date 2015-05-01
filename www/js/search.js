@@ -16,7 +16,7 @@ function searchExec(){
 	});
 }
 function renderPeople(people){
-	var template = "";
+	var template = '<h3 class="title-results">People results</h3>';
 
 	for(var i=0;i<people.length;i++){
 		template += '<div class="person-search"><div class="person-img-container-search">';
@@ -28,10 +28,10 @@ function renderPeople(people){
 	$("#search-people").html(template);
 }
 function renderDogs(dogs){
-	var template = '';
+	var template = '<h3 class="title-results">Dogs results</h3>';
 	for(var i=0;i<dogs.length;i++){
 		dogs[i].profPhoto = domain + "curUser._id"+"/imgdog/"+dogs[i]._id;
-		
+
 		template += '<div class="dog-container">';
 		template += '<h3 class="dog-field">' + dogs[i].name + '</h3>';
 		template += '<p class="dog-field">' + dogs[i].breed+'</p>';

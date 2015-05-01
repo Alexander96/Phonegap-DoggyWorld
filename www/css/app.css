@@ -30,7 +30,6 @@ p,h1,h2,h3,h4,h5,img,div,section{
 }
 .main-left-data, .main-right-data{
 	display: inline-block;
-	padding: 8px;
 	vertical-align: top;
 }
 .main-left-data{
@@ -38,10 +37,11 @@ p,h1,h2,h3,h4,h5,img,div,section{
 }
 .main-right-data{
 	width: 70%;
+	padding: 8px;
 	text-align: center;
 }
 .main-img-container{
-	padding: 5px;
+	padding: 2px;
 	border: 1px solid #eaeaea;
 	background: #fff;
 	border-radius: 5px;
@@ -51,6 +51,27 @@ p,h1,h2,h3,h4,h5,img,div,section{
 	width: 100%;
 	max-height: 200px;
 	border-radius: 5px;
+}
+.main-achievement{
+	color: #424345;
+	background: #fff;
+	border: 1px solid #eaeaea;
+	margin-top: 8px;
+	padding: 8px;
+	border-radius: 5px;
+}
+.achievement-author{
+	font-size: 0.9em;
+	color: #0CA2FF;
+}
+.achievement-points{
+	padding-top: 2px;
+	font-size: 0.8em;
+	color: #7ccc31;
+}
+.achievement-description{
+	text-align: center;
+	border-bottom: 1px solid #eaeaea;
 }
 .dog-container{
 	padding: 8px;
