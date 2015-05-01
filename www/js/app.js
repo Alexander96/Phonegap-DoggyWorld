@@ -51,7 +51,8 @@ function loginForm(){
 	    		curUser = data.user;
 	    		curUser.profPhoto = domain+"img/profPhoto/" + curUser._id;
 	    		user_id_access_token = curUser._id;
-	    		$("#output").html("<h2>" + curUser.firstName + "</h2>");
+	    		$("#main-names").html("<h3>" + curUser.firstName + "</h3>" + "<h3>" + curUser.lastName + "</h3>");
+	    		$("#main-img-container").html('<img src="'+ curUser.profPhoto +'">');
 	    		$.mobile.changePage("#" + pages.Home, {reverse: false, transition: "slide"});
 	    	}
 	    }
