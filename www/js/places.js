@@ -5,7 +5,8 @@ var map,
   placesOtherUsers = [],
   curLatLng,
   curLat,
-  curLon;
+  curLon,
+  viewLatLng;
 function initialize() {
     var latlng = new google.maps.LatLng(42.4192551, 25.6248617);
     var myOptions = {
@@ -27,6 +28,8 @@ function renderPlaces(places, curUser){
     template += '<div class="places-buttons"><button class="ui-btn ui-icon-navigation ui-btn-icon-right" onclick="viewPlace(' +"'" +places[i]._id+ "'" + ')">View on Map</button>';
     if(curUser)
       template += '<button class="ui-btn ui-icon-delete ui-btn-icon-right" onclick="deletePlace(' +"'" +places[i]._id+ "'" + ')">Delete</button>';
+    else
+      template += '<button class="ui-btn ui-icon-heart ui-btn-icon-right" onclick="ratePlace(' +"'" +places[i]._id+ "'" + ')">Rate +1</button>';
     template += '</div>';
     template += '</div>';
   }
@@ -50,6 +53,9 @@ $(document).delegate('#' + pages.Places, 'pageshow', function () {
         PlacesService.openInfoMarkerArray(map, markersCurUser, placesCurUser);
         PlacesService.setCenter(map, curLatLng);
         renderPlaces(placesCurUser, true);
+
+        console.log("Markers");
+        console.log(markersCurUser);
       }
   });
   $.ajax({
@@ -91,7 +97,24 @@ function onError(error) {
 	console.log("couldnt get current location");
 }
 function viewPlace(id){
-  alert(id);
+  var i=0;
+  for(;i<placesCurUser.length;i++){
+    if(placesCurUser[i]._id == id){
+      viewLatLng = new google.maps.LatLng(markersCurUser[i].position.A, markersCurUser[i].position.F);
+      map.setCenter(viewLatLng);
+      return;
+    }
+  }
+  for(i=0;i<placesOtherUsers.length;i++){
+    if(placesOtherUsers[i]._id == id){
+      viewLatLng = new google.maps.LatLng(markersOtherUsers[i].position.A, markersOtherUsers[i].position.F);
+      map.setCenter(viewLatLng);
+      return;
+    }
+  }
+}
+function ratePlace(id){
+  alert(id)
 }
 function deletePlace(id){
   alert(id);
