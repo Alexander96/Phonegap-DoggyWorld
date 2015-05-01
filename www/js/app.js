@@ -8,7 +8,8 @@ var pages = {
 	Home: "home-page",
 	Login: "login-page",
 	Dogs: "dogs-page",
-	Places: "places-page"
+	Places: "places-page",
+	Search: "search-page"
 }
 $(document).on("pagecreate", function () {
     $("[data-role=panel]").one("panelbeforeopen", function () {
