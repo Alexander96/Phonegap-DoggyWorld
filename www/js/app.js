@@ -2,7 +2,7 @@ var curUser = null;
 var dogs = [];
 var domain = "http://pupmates.net/";
 //domain = "http://localhost:1234/",
-user_id_access_token = "";
+var user_id_access_token = "";
 
 var pages = {
 	Home: "home-page",
