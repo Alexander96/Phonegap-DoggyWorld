@@ -9,7 +9,8 @@ var pages = {
 	Login: "login-page",
 	Dogs: "dogs-page",
 	Places: "places-page",
-	Search: "search-page"
+	Search: "search-page",
+	EditDog: "edit-dog-dialog"
 }
 $(document).on("pagecreate", function () {
     $("[data-role=panel]").one("panelbeforeopen", function () {

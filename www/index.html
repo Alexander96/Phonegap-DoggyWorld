@@ -129,22 +129,24 @@
             </div>
         </div>
     </div>
-    <div data-role="page" id="edit-dog-dialog" data-close-btn="right" data-overlay-theme="b" data-theme="b">
+    <div data-role="page" data-history="false" id="edit-dog-dialog" data-close-btn="right" data-overlay-theme="b" data-theme="b">
         <div data-theme="b" data-role="header">
             <h2>Edit</h2>
         </div>
         <div role="main" data-theme="b" class="ui-content">
-            <h3 class="dog-field edit-dog-field-title">Name</h3>
-            <input class="edit-input" type="text" name="dog-name" />
-            <p class="dog-field edit-dog-field-title">Breed</p>
-            <input class="edit-input" type="text" name="dog-breed" />
-            <p class="dog-field edit-dog-field-title">BirthDate</p>
-            <input class="edit-input" type="date" data-clear-btn="true" name="dog-birthdate" >
-            <p class="dog-field edit-dog-field-title">Picture</p>
-            <input class="edit-input" type="file" name="dog-image" accept="image/*" capture>
-            <p class="dog-field edit-dog-field-title">Description</p>
-            <input class="edit-input" type="text" name="dog-description" />
-            <button data-role="button" onclick="saveDog()" class="ui-link ui-btn ui-btn-b ui-shadow ui-corner-all">Save</button>
+            <form>
+                <h3 class="dog-field edit-dog-field-title">Name</h3>
+                <input class="edit-input" type="text" name="dog-name" />
+                <p class="dog-field edit-dog-field-title">Breed</p>
+                <input class="edit-input" type="text" name="dog-breed" />
+                <p class="dog-field edit-dog-field-title">BirthDate</p>
+                <input class="edit-input" type="date" data-clear-btn="true" name="dog-birthdate" >
+                <p class="dog-field edit-dog-field-title">Picture</p>
+                <input id="edit-dog-img" value="" class="edit-input ui-input-text ui-body-c" type="file" name="dog-image" accept="image/*"/>
+                <p class="dog-field edit-dog-field-title">Description</p>
+                <input class="edit-input" type="text" name="dog-description" />
+                <button data-role="button" onclick="saveDog()" class="ui-link ui-btn ui-btn-b ui-shadow ui-corner-all">Save</button>
+            </form>
         </div>
     </div>
     <div data-role="page" id="edit-profile-dialog" data-close-btn="right" data-overlay-theme="b" data-theme="b">

@@ -54,20 +54,56 @@ function loadDogCurDog(){
 	$("[name=dog-description]").val(clickedDog.description);
 }
 function saveDog(){
-	$( "#edit-dog-dialog" ).dialog( "close" );
-
+	$.mobile.loading("show");
 	// /updateDog/:userId/:dogId
-	//put
-}
-var files;
+	clickedDog.name = $("[name=dog-name]").val();
+	clickedDog.breed = $("[name=dog-breed]").val();
+	clickedDog.birthDate = $("[name=dog-birthdate]").val();
+	if(profPhoto.data){
+		clickedDog.profPhoto = profPhoto;
+	}
+	else{
+	}
+	clickedDog.description = $("[name=dog-description]").val();
+	alert(curUser._id);
+	$.ajax({
+      url: domain + "updateDog/" + curUser._id + "/" + clickedDog._id + "?user_id_access_token=" + user_id_access_token,
+      type: 'PUT',
+      data: clickedDog,
+      dataType: 'json',
+      error : function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.status);
+        alert(thrownError);
+        $.mobile.loading("hide");
+      }, 
+      success: function () {
+      	console.log(response);
+      	$( "#edit-dog-dialog" ).dialog( "close" );
+      }
+  	});
 
-// Add events
-$('input[type=file]').on('change', prepareUpload);
-
-// Grab the files and set them to our variable
-function prepareUpload(event)
-{
-  files = event.target.files;
-  console.log(files);
-  alert(files);
 }
+
+var data,
+	contentType;
+var profPhoto = {};
+$(document).delegate('#' + pages.EditDog, 'pageshow', function () {
+	var image = 
+   $( '#edit-dog-img' ).on("change", function(){
+		var files = this.files;
+		var reader = new FileReader();
+		name=this.value;
+         
+		reader.onload = function (e) {
+		    console.log(e);
+		    var result = e.target.result;
+			data = result.slice(result.indexOf(",") +1, result.length);
+		    contentType = result.slice(result.indexOf(":") + 1, result.indexOf(";base64"));
+
+            profPhoto.data = data;
+            profPhoto.contentType = contentType;
+            console.log(profPhoto);
+		};
+		reader.readAsDataURL(files[0]);
+	});
+});
