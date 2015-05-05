@@ -30,3 +30,8 @@ function renderAchievements(achievements){
 
 	$("#achievements-content").html(template);
 }
+function LoadFieldsProfile(){
+	$("[name=profile-firstName]").val(curUser.firstName);
+	$("[name=profile-lastName]").val(curUser.lastName);
+	$("[name=profile-email]").val(curUser.email);
+}

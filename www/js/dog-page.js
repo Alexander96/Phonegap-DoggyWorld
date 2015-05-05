@@ -1,20 +1,4 @@
-$(document).delegate('#' + pages.Dogs, 'pagebeforeshow', function () {
-    $.ajax({
-	    url: domain + 'dogs/' + curUser._id,
-	    type: 'GET',
-	    error : function (){ document.title='error'; }, 
-	    success: function (data) {
-	    	if(data){
-	    		dogs = data;
-	    		console.log(data);
-	    		for(var i=0;i<dogs.length;i++){
-	    			dogs[i].profPhoto = domain + "curUser._id"+"/imgdog/"+dogs[i]._id;
-	    		}
-	    		loadDogs();
-	    	}
-	    }
-	});
-});
+var dogs = [];
 var clickedDog;
 function loadDogs(){
 	var template = '';
@@ -23,7 +7,7 @@ function loadDogs(){
 		template += '<h3 class="dog-field">' + dogs[i].name + '</h3>';
 		template += '<p class="dog-field">' + dogs[i].breed+'</p>';
 		template += '<p class="dog-field">'+dogs[i].birthDate+'</p>';
-		template += '<div class="dog-img-container"><img src="' + dogs[i].profPhoto + '" /></div>';
+		template += '<div class="dog-img-container"><img src="' + dogs[i].url + '" /></div>';
 		template += '<p class="dog-field">'+dogs[i].description+'</p>';
 		template += '<a href="#edit-dog-dialog" class="edit-btn ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="slide">Edit</a>';
 		template += '</div>';
@@ -32,6 +16,29 @@ function loadDogs(){
 	$("#dogs-content").html(template);
 
 }
+
+function getDogs(){
+	$.mobile.loading("show");
+    $.ajax({
+	    url: domain + 'dogs/' + curUser._id,
+	    type: 'GET',
+	    error : function (){ document.title='error'; $.mobile.loading("hide"); }, 
+	    success: function (data) {
+	    	if(data){
+	    		dogs = data;
+	    		console.log("-----dogs-----");
+	    		console.log(dogs);
+	    		for(var i=0;i<dogs.length;i++){
+	    			dogs[i].url = domain + "curUser._id"+"/imgdog/"+dogs[i]._id;
+	    		}
+	    		loadDogs();
+	    		$.mobile.loading("hide");
+	    	}
+	    }
+	});
+}
+$(document).delegate('#' + pages.Dogs, 'pageshow', getDogs);
+
 function dogClick(dogId){
 	for(var i=0;i<dogs.length;i++){
 		if(dogs[i]._id == dogId){
@@ -55,25 +62,29 @@ function loadDogCurDog(){
 }
 function saveDog(){
 	$.mobile.loading("show");
-	// /updateDog/:userId/:dogId
+	// updateDog/:userId/:dogId
 	clickedDog.name = $("[name=dog-name]").val();
 	clickedDog.breed = $("[name=dog-breed]").val();
-	clickedDog.birthDate = $("[name=dog-birthdate]").val();
+	var br = $("[name=dog-birthdate]").val().split("-");
+	clickedDog.birthDate = br[2] + "/" + br[1] + "/" + br[0];
+	alert(clickedDog.birthDate);
 	if(profPhoto.data){
 		clickedDog.profPhoto = profPhoto;
 	}
 	else{
 	}
 	clickedDog.description = $("[name=dog-description]").val();
-	alert(curUser._id);
+
 	$.ajax({
       url: domain + "updateDog/" + curUser._id + "/" + clickedDog._id + "?user_id_access_token=" + user_id_access_token,
       type: 'PUT',
       data: clickedDog,
       dataType: 'json',
       error : function (xhr, ajaxOptions, thrownError) {
-        alert(xhr.status);
-        alert(thrownError);
+        if(xhr.status == 200){
+        	$( "#edit-dog-dialog" ).dialog( "close" );
+        	loadDogs();
+        }
         $.mobile.loading("hide");
       }, 
       success: function () {
@@ -82,11 +93,20 @@ function saveDog(){
       }
   	});
 
+  	return false;
+
 }
 
 var data,
 	contentType;
 var profPhoto = {};
+
+function refreshPage(page){
+    // Page refresh
+    page.trigger('pagecreate');
+    page.listview('refresh');
+}
+
 $(document).delegate('#' + pages.EditDog, 'pageshow', function () {
 	var image = 
    $( '#edit-dog-img' ).on("change", function(){

@@ -60,7 +60,7 @@
                 <div id="main-names">
 
                 </div>
-                <a href="#edit-profile-dialog" class="ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="slide">Edit</a>
+                <a href="#edit-profile-dialog" onclick="LoadFieldsProfile()" class="ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="slide">Edit</a>
             </div>
             <h3 class="text-center">Achivements</h3>
             <div id="achievements-content">
@@ -134,7 +134,7 @@
             <h2>Edit</h2>
         </div>
         <div role="main" data-theme="b" class="ui-content">
-            <form>
+            <form method="PUT" data-ajax="false" onSubmit="return saveDog()">
                 <h3 class="dog-field edit-dog-field-title">Name</h3>
                 <input class="edit-input" type="text" name="dog-name" />
                 <p class="dog-field edit-dog-field-title">Breed</p>
@@ -145,7 +145,7 @@
                 <input id="edit-dog-img" value="" class="edit-input ui-input-text ui-body-c" type="file" name="dog-image" accept="image/*"/>
                 <p class="dog-field edit-dog-field-title">Description</p>
                 <input class="edit-input" type="text" name="dog-description" />
-                <button data-role="button" onclick="saveDog()" class="ui-link ui-btn ui-btn-b ui-shadow ui-corner-all">Save</button>
+                <input type="submit" value="Save">
             </form>
         </div>
     </div>
@@ -154,7 +154,21 @@
             <h2>Edit</h2>
         </div>
         <div role="main" data-theme="b" class="ui-content">
-            <button data-role="button" onclick="saveProfile()" class="ui-link ui-btn ui-btn-b ui-shadow ui-corner-all">Save</button>
+            <form method="PUT" data-ajax="false" onSubmit="return saveProfile()">
+                <h3 class="dog-field edit-dog-field-title">First Name</h3>
+                <input class="edit-input" type="text" name="profile-firstName" />
+                <p class="dog-field edit-dog-field-title">Last Name</p>
+                <input class="edit-input" type="text" name="profile-lastName" />
+                <p class="dog-field edit-dog-field-title">Email</p>
+                <input class="edit-input" type="text" data-clear-btn="true" name="profile-email" >
+                <p class="dog-field edit-dog-field-title">Picture</p>
+                <input id="edit-profile-img" value="" class="edit-input ui-input-text ui-body-c" type="file" name="profile-image" accept="image/*"/>
+                <p class="dog-field edit-dog-field-title">New password</p>
+                <input class="edit-input" type="password" name="profile-password1" />
+                <p class="dog-field edit-dog-field-title">New password - repeat</p>
+                <input class="edit-input" type="password" name="profile-password2" />
+                <input type="submit" value="Save">
+            </form>
         </div>
     </div>
     <div data-role="panel" id="main-menu" data-position="left" data-display="reveal" data-theme="b">

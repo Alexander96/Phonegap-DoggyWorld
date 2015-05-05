@@ -30,13 +30,13 @@ function renderPeople(people){
 function renderDogs(dogs){
 	var template = '<h3 class="title-results">Dogs results</h3>';
 	for(var i=0;i<dogs.length;i++){
-		dogs[i].profPhoto = domain + "curUser._id"+"/imgdog/"+dogs[i]._id;
+		dogs[i].url = domain + "curUser._id"+"/imgdog/"+dogs[i]._id;
 
 		template += '<div class="dog-container">';
 		template += '<h3 class="dog-field">' + dogs[i].name + '</h3>';
 		template += '<p class="dog-field">' + dogs[i].breed+'</p>';
 		template += '<p class="dog-field">'+dogs[i].birthDate+'</p>';
-		template += '<div class="dog-img-container"><img src="' + dogs[i].profPhoto + '" /></div>';
+		template += '<div class="dog-img-container"><img src="' + dogs[i].url + '" /></div>';
 		template += '<p class="dog-field">'+dogs[i].description+'</p>';
 		template += '</div>';
 
