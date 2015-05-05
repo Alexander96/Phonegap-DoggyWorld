@@ -14,7 +14,7 @@ var pages = {
 	UserProfile: "user-profile-page"  // another user profile NOT the current one
 }
 $(window).on("navigate", function (event, data) {
-  var direction = data.state.direction;
+  /*var direction = data.state.direction;
   if (direction == 'back') {
     var activePage = $.mobile.activePage.attr('id');
     if(activePage == pages.UserProfile){
@@ -29,7 +29,7 @@ $(window).on("navigate", function (event, data) {
   }
   if (direction == 'forward') {
     // do something else
-  }
+  }*/
 });
 $(document).on("pagecreate", function () {
     $("[data-role=panel]").one("panelbeforeopen", function () {

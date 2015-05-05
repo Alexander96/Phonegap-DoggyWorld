@@ -70,7 +70,7 @@ function saveDog(){
 	clickedDog.breed = $("[name=dog-breed]").val();
 	var br = $("[name=dog-birthdate]").val().split("-");
 	clickedDog.birthDate = br[2] + "/" + br[1] + "/" + br[0];
-	alert(clickedDog.birthDate);
+	//alert(clickedDog.birthDate);
 	if(profPhoto.data){
 		clickedDog.profPhoto = profPhoto;
 	}
