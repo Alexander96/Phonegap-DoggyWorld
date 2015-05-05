@@ -1,7 +1,7 @@
 var curUser = null;
 
 var domain = "http://pupmates.net/";
-domain = "http://localhost:1234/";
+//domain = "http://localhost:1234/";
 var user_id_access_token = "";
 
 var pages = {
@@ -13,6 +13,24 @@ var pages = {
 	EditDog: "edit-dog-dialog",
 	UserProfile: "user-profile-page"  // another user profile NOT the current one
 }
+$(window).on("navigate", function (event, data) {
+  var direction = data.state.direction;
+  if (direction == 'back') {
+    var activePage = $.mobile.activePage.attr('id');
+    if(activePage == pages.UserProfile){
+    	$.mobile.changePage("#" + pages.Search, {reverse: false, transition: "slide"});
+    	return;
+    }
+    if(activePage == pages.Home){
+    	navigator.app.exitApp();
+    	return;
+    }
+    $.mobile.changePage("#" + pages.Home, {reverse: false, transition: "slide"});
+  }
+  if (direction == 'forward') {
+    // do something else
+  }
+});
 $(document).on("pagecreate", function () {
     $("[data-role=panel]").one("panelbeforeopen", function () {
         var height = $.mobile.pageContainer.pagecontainer("getActivePage").outerHeight();
