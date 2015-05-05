@@ -10,7 +10,8 @@ var pages = {
 	Dogs: "dogs-page",
 	Places: "places-page",
 	Search: "search-page",
-	EditDog: "edit-dog-dialog"
+	EditDog: "edit-dog-dialog",
+	UserProfile: "user-profile-page"  // another user profile NOT the current one
 }
 $(document).on("pagecreate", function () {
     $("[data-role=panel]").one("panelbeforeopen", function () {

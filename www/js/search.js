@@ -19,10 +19,12 @@ function renderPeople(people){
 	var template = '<h3 class="title-results">People results</h3>';
 
 	for(var i=0;i<people.length;i++){
+		if(people[i]._id == curUser._id) continue;
 		template += '<div class="person-search"><div class="person-img-container-search">';
 		template += '<img src="http://pupmates.net/img/profPhoto/' + people[i]._id + '"></div>';
 		template += '<div class="person-info-search">' + people[i].firstName + ' ' + people[i].lastName +'</div>';
-		template += '<div class="search-person-buttons"><button class="ui-btn ui-icon-user ui-btn-icon-right" onclick="addFriend('+"'" +people[i]._id+ "'" + ')" >Add friend</button></div>';
+		template += '<div class="search-person-buttons search-first-button"><button class="ui-btn ui-icon-user ui-btn-icon-right" onclick="addFriend('+"'" +people[i]._id+ "'" + ')" >Add friend</button></div>';
+		template += '<div class="search-person-buttons"><button class="ui-btn ui-icon-user ui-btn-icon-right" onclick="viewProfile('+"'" +people[i].username+ "'" + ')" >View Profile</button></div>';
 		template += '</div>';
 	}
 	$("#search-people").html(template);

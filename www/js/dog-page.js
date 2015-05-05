@@ -1,19 +1,22 @@
 var dogs = [];
 var clickedDog;
-function loadDogs(){
+function loadDogs(id, d){
 	var template = '';
-	for(var i=0;i<dogs.length;i++){
-		template += '<div class="dog-container" onclick="dogClick(' +"'" +dogs[i]._id+ "'" + ')">';
-		template += '<h3 class="dog-field">' + dogs[i].name + '</h3>';
-		template += '<p class="dog-field">' + dogs[i].breed+'</p>';
-		template += '<p class="dog-field">'+dogs[i].birthDate+'</p>';
-		template += '<div class="dog-img-container"><img src="' + dogs[i].url + '" /></div>';
-		template += '<p class="dog-field">'+dogs[i].description+'</p>';
-		template += '<a href="#edit-dog-dialog" class="edit-btn ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="slide">Edit</a>';
+	for(var i=0;i<d.length;i++){
+		template += '<div class="dog-container" onclick="dogClick(' +"'" +d[i]._id+ "'" + ')">';
+		template += '<h3 class="dog-field">' + d[i].name + '</h3>';
+		template += '<p class="dog-field">' + d[i].breed+'</p>';
+		template += '<p class="dog-field">'+d[i].birthDate+'</p>';
+		template += '<div class="dog-img-container"><img src="' + d[i].url + '" /></div>';
+		template += '<p class="dog-field">'+d[i].description+'</p>';
+		if(!id)
+			template += '<a href="#edit-dog-dialog" class="edit-btn ui-btn ui-icon-edit ui-btn-icon-right" data-rel="dialog" data-transition="slide">Edit</a>';
 		template += '</div>';
 
 	}
-	$("#dogs-content").html(template);
+	if(!id)
+		$("#dogs-content").html(template);
+	else $("#"+id).html(template);
 
 }
 
@@ -29,9 +32,9 @@ function getDogs(){
 	    		console.log("-----dogs-----");
 	    		console.log(dogs);
 	    		for(var i=0;i<dogs.length;i++){
-	    			dogs[i].url = domain + "curUser._id"+"/imgdog/"+dogs[i]._id;
+	    			dogs[i].url = domain + curUser._id +"/imgdog/"+dogs[i]._id;
 	    		}
-	    		loadDogs();
+	    		loadDogs(null, dogs);
 	    		$.mobile.loading("hide");
 	    	}
 	    }
@@ -83,7 +86,7 @@ function saveDog(){
       error : function (xhr, ajaxOptions, thrownError) {
         if(xhr.status == 200){
         	$( "#edit-dog-dialog" ).dialog( "close" );
-        	loadDogs();
+        	loadDogs(null, dogs);
         }
         $.mobile.loading("hide");
       }, 
@@ -100,12 +103,6 @@ function saveDog(){
 var data,
 	contentType;
 var profPhoto = {};
-
-function refreshPage(page){
-    // Page refresh
-    page.trigger('pagecreate');
-    page.listview('refresh');
-}
 
 $(document).delegate('#' + pages.EditDog, 'pageshow', function () {
 	var image = 

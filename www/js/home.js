@@ -13,8 +13,9 @@ $(document).delegate('#' + pages.Home, 'pageshow', function () {
 	    }
 	});
 });
-function renderAchievements(achievements){
+function renderAchievements(achievements, id){
 	var template = "";
+	if(!achievements)return;
 /*<div class="main-achievement">
                     <p class="achievement-description">Command the dog to sit</p>
                     <div class="achievement-author">Author: Boyan hristov</div>
@@ -27,8 +28,10 @@ function renderAchievements(achievements){
 		template += '<div class="achievement-points">Points: ' + achievements[i].points + '</div>';
 		template += '</div>';
 	}
-
-	$("#achievements-content").html(template);
+	if(!id)
+		$("#achievements-content").html(template);
+	else
+		$("#" + id).html(template);
 }
 function LoadFieldsProfile(){
 	$("[name=profile-firstName]").val(curUser.firstName);

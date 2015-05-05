@@ -22,6 +22,7 @@
     <script type="text/javascript" charset="utf-8" src="js/places.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/search.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/friends.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/userProfile.js"></script>
 </head>
 <body>
     <!-- page -->
@@ -65,6 +66,36 @@
             <h3 class="text-center">Achivements</h3>
             <div id="achievements-content">
                 
+            </div>
+        </div>
+    </div>
+    <div class="page" data-role="page" id="user-profile-page" data-theme="b">
+        <div data-role="header" class="app-header">
+            <a href="#main-menu" class="ui-btn ui-icon-bullets ui-btn-icon-left">Menu</a>
+            <h1>Home</h1>
+            <a href="#friends-menu" class="ui-btn ui-icon-user ui-btn-icon-right">Friends</a>
+        </div>
+        <!-- testing the ajax -->
+        <div data-role="content">
+            <div class="main-left-data">
+                <div id="user-main-img-container">
+                    
+                </div>
+            </div>
+            <div class="main-right-data">
+                <div id="user-main-names">
+
+                </div>
+                <button class="ui-btn ui-icon-user ui-btn-icon-right" onclick="addFriend()">Add friend</button>
+            </div>
+            </div>
+            <h3 class="text-center">Achivements</h3>
+            <div id="user-achievements-content">
+                
+            </div>
+            <h3 class="text-center">Dogs</h3>
+            <div id="user-dogs">
+
             </div>
         </div>
     </div>
@@ -171,7 +202,7 @@
             </form>
         </div>
     </div>
-    <div data-role="panel" id="main-menu" data-position="left" data-display="reveal" data-theme="b">
+    <div data-role="panel" id="main-menu" data-position="left" data-display="overlay" data-theme="b">
         <h2 class="text-center">Menu</h2>
         <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
             <li data-corners="false" data-shadow="false" data-wrapperels="div"  data-theme="b">
@@ -210,7 +241,7 @@
         </ul>
         <button onclick="closeMainMenu()">Close</button>
     </div>
-    <div data-role="panel" id="friends-menu" data-position="right" data-display="reveal" data-theme="b">
+    <div data-role="panel" id="friends-menu" data-position="right" data-display="overlay" data-theme="b">
         <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
             <h2>No Friends :D</h2>
         </ul>

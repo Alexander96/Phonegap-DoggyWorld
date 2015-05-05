@@ -40,7 +40,7 @@ p,h1,h2,h3,h4,h5,img,div,section{
 	padding: 8px;
 	text-align: center;
 }
-#main-img-container{
+#main-img-container, #user-main-img-container{
 	padding: 2px;
 	border: 1px solid #eaeaea;
 	background: #fff;
@@ -49,7 +49,7 @@ p,h1,h2,h3,h4,h5,img,div,section{
 .text-center{
 	text-align: center;
 }
-#main-img-container img{
+#main-img-container img, #user-main-img-container img{
 	margin: 0 auto;
 	width: 100%;
 	max-height: 200px;
@@ -110,4 +110,7 @@ p,h1,h2,h3,h4,h5,img,div,section{
 	border-radius: 5px;
 	width: 80%;
 	margin: 0 auto;
+}
+#user-dogs, #user-achievements-content{
+	padding: 18px;
 }
