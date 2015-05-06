@@ -1,7 +1,7 @@
 var curUser = null;
 
 var domain = "http://pupmates.net/";
-//domain = "http://localhost:1234/";
+domain = "http://localhost:1234/";
 var user_id_access_token = "";
 
 var pages = {
@@ -11,7 +11,8 @@ var pages = {
 	Places: "places-page",
 	Search: "search-page",
 	EditDog: "edit-dog-dialog",
-	UserProfile: "user-profile-page"  // another user profile NOT the current one
+	UserProfile: "user-profile-page",  // another user profile NOT the current one
+	AllAchievements: "all-achievements-page"
 }
 $(window).on("navigate", function (event, data) {
   /*var direction = data.state.direction;

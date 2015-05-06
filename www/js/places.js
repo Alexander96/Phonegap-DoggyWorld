@@ -6,7 +6,11 @@ var map,
   curLatLng,
   curLat,
   curLon,
-  viewLatLng;
+  viewLatLng,
+  ratedPlaces;
+
+
+
 function initialize() {
     var latlng = new google.maps.LatLng(42.4192551, 25.6248617);
     var myOptions = {
@@ -25,13 +29,13 @@ function renderPlaces(places, curUser){
     if(curUser) template += '<img src="http://pupmates.net/img/marker-blue.png">';
     else template += '<img src="http://pupmates.net/img/marker-green.png">';
     template +='</div><div class="places-name">' + places[i].name + "</div>";
-    template += '<div class="places-rate"> | rate: ' + places[i].rate + '</div>';
+    template += '<div class="places-rate"> | rate: ' +'<span id=' +"'" +places[i]._id+ "'" + '>' + places[i].rate + "</span>" + '</div>';
     template += '<div class="places-description">' + places[i].description + '</div>';
     template += '<div class="places-buttons"><button class="ui-btn ui-icon-navigation ui-btn-icon-right" onclick="viewPlace(' +"'" +places[i]._id+ "'" + ')">View on Map</button>';
     if(curUser)
       template += '<button class="ui-btn ui-icon-delete ui-btn-icon-right" onclick="deletePlace(' +"'" +places[i]._id+ "'" + ')">Delete</button>';
     else
-      template += '<button class="ui-btn ui-icon-heart ui-btn-icon-right" onclick="ratePlace(' +"'" +places[i]._id+ "'" + ')">Rate +1</button>';
+      template += '<button class="ui-btn ui-icon-heart ui-btn-icon-right"  onclick="ratePlace(' +"'" +places[i]._id+ "'" + ')">Rate +1</button>';
     template += '</div>';
     template += '</div>';
   }
@@ -41,6 +45,12 @@ function renderPlaces(places, curUser){
 $(document).delegate('#' + pages.Places, 'pageshow', function () {
 	initialize();
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+  ratedPlaces = window.localStorage.getItem("ratedPlaces" + curUser._id);
+  if(!ratedPlaces) ratedPlaces = {places:[]};
+  else{
+    ratedPlaces = JSON.parse(ratedPlaces);
+  }
 
   $.ajax({
       url: domain + "places/" + curUser._id,
@@ -116,7 +126,37 @@ function viewPlace(id){
   }
 }
 function ratePlace(id){
-  alert(id)
+  // rateplace/:placeId
+  for(var i=0;i<ratedPlaces.places.length;i++){
+    if(ratedPlaces.places[i]==id){
+      //navigator.notification.alert("You have already rated that place :)", function(){});
+      return;
+    }
+  }
+
+  $.ajax({
+    url: domain + "rateplace/" + id + "?user_id_access_token=" + user_id_access_token,
+    type: "PUT",
+    data: {placeId: id},
+    dataType: 'json',
+    error:function(xhr, ajaxOptions, thrownError){
+      if(xhr.status==200){
+
+        ratedPlaces.places.push(id);
+        window.localStorage.setItem("ratedPlaces"+curUser._id, JSON.stringify(ratedPlaces));
+        $("#" + id).text($("#" +id).text() * 1 + 1);
+      }
+      console.log(ratedPlaces.places);
+    },
+    success:function(res){
+      console.log(res);
+
+      ratedPlaces.places.push(id);
+      window.localStorage.setItem("ratedPlaces"+curUser._id, JSON.stringify(ratedPlaces));
+      $("#" + id).text($("#" +id).text() * 1 + 1);
+    }
+
+  });
 }
 function deletePlace(id){
   alert(id);

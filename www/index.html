@@ -23,6 +23,7 @@
     <script type="text/javascript" charset="utf-8" src="js/search.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/friends.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/userProfile.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/allAchievements.js"></script>
 </head>
 <body>
     <!-- page -->
@@ -86,7 +87,7 @@
                 <div id="user-main-names">
 
                 </div>
-                <button class="ui-btn ui-icon-user ui-btn-icon-right" onclick="addFriend()">Add friend</button>
+                <button class="ui-btn ui-icon-plus ui-btn-icon-right" onclick="addFriend()">Add friend</button>
             </div>
             <h3 class="text-center">Achivements</h3>
             <div id="user-achievements-content">
@@ -148,15 +149,26 @@
         </div>
         <div id="search-content" data-role="content">
             <div data-role="fieldcontain">
-                <input type="search" placeholder="Search people, dogs..." name="search-input" id="search-input" value="" />
+                <form method="GET" data-ajax="false" onSubmit="return searchExec()">
+                    <input type="search" placeholder="Search people, dogs..." name="search-input" id="search-input" value="" />
+                    <input type="submit" value="Search" />
+                </form>
             </div>
-            <button data-role="button" onclick="searchExec()" class="ui-link ui-btn ui-btn-b ui-shadow ui-corner-all">Search</button>
             
             <div id="search-people">
                 
             </div>
             <div id="search-dogs">
             </div>
+        </div>
+    </div>
+    <div class="page" data-role="page" id="all-achievements-page" data-theme="b">
+        <div data-role="header" class="app-header">
+            <a href="#main-menu" class="ui-btn ui-icon-bullets ui-btn-icon-left">Menu</a>
+            <h1>All Achievements</h1>
+            <a href="#friends-menu" class="ui-btn ui-icon-user ui-btn-icon-right">Friends</a>
+        </div>
+        <div id="all-achievements-content" data-role="content">
         </div>
     </div>
     <div data-role="page" data-history="false" id="edit-dog-dialog" data-close-btn="right" data-overlay-theme="b" data-theme="b">
@@ -228,6 +240,13 @@
                     <div class="ui-btn-inner ui-li">
                     <button onclick="goToPage('places-page')" data-transition="pop" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">Places</button>
                 </div>
+                </div>
+            </li>
+            <li data-corners="false" data-shadow="false" data-wrapperels="div"  data-theme="b">
+                <div class="ui-btn-inner ui-li">
+                    <div class="ui-btn-inner ui-li">
+                        <button onclick="goToPage('all-achievements-page')" data-transition="pop" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">All Achievements</button>
+                    </div>
                 </div>
             </li>
             <li data-corners="false" data-shadow="false" data-wrapperels="div"  data-theme="b">
