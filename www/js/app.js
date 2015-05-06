@@ -12,7 +12,8 @@ var pages = {
 	Search: "search-page",
 	EditDog: "edit-dog-dialog",
 	UserProfile: "user-profile-page",  // another user profile NOT the current one
-	AllAchievements: "all-achievements-page"
+	AllAchievements: "all-achievements-page",
+	Chat: "chat-page"
 }
 $(window).on("navigate", function (event, data) {
   /*var direction = data.state.direction;
@@ -74,6 +75,7 @@ function loginForm(){
 	    		user_id_access_token = curUser._id;
 	    		$("#main-names").html("<h3>" + curUser.firstName + "</h3>" + "<h3>" + curUser.lastName + "</h3>");
 	    		$("#main-img-container").html('<img src="'+ curUser.profPhoto +'">');
+	    		renderFriendsList(curUser.friends);
 	    		$.mobile.changePage("#" + pages.Home, {reverse: false, transition: "slide"});
 	    	}
 	    }
