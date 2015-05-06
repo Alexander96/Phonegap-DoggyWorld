@@ -1,7 +1,7 @@
 var curUser = null;
 
 var domain = "http://pupmates.net/";
-domain = "http://localhost:1234/";
+//domain = "http://localhost:1234/";
 var user_id_access_token = "";
 
 var pages = {

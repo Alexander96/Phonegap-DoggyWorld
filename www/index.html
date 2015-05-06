@@ -139,6 +139,24 @@
 
                 </div>
             </div>
+
+            <div data-role="popup" id="popup-delete" 
+                data-theme="a" class="ui-corner-bottom ui-content" data-overlay-theme="b">
+
+                 <div data-role="content">
+                    <h3 class="ui-title">Are you sure?</h3>
+
+                    <p>This action will delete the place.</p>
+
+                    <a href="#" onclick="cancelDelete();" data-role="button" data-inline="true" data-rel="back" data-theme="c">
+                        Cancel
+                    </a>
+
+                    <a href="#" onclick="confirmDelete()" class="ui-corner-all btn-delete" data-role="button" data-inline="true" data-transition="flow" >
+                        OK
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="page" data-role="page" id="search-page" data-theme="b">

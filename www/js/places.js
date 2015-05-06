@@ -7,7 +7,9 @@ var map,
   curLat,
   curLon,
   viewLatLng,
-  ratedPlaces;
+  ratedPlaces,
+  placeToDelete,
+  placeToDeleteIndex;
 
 
 
@@ -25,7 +27,7 @@ function initialize() {
 function renderPlaces(places, curUser){
   var template = "";
   for(var i=0;i<places.length;i++){
-    template += '<div class="places-container"><div class="places-img-container">';
+    template += '<div class="places-container" id=' +"'place-" +places[i]._id+ "'" + '><div class="places-img-container">';
     if(curUser) template += '<img src="http://pupmates.net/img/marker-blue.png">';
     else template += '<img src="http://pupmates.net/img/marker-green.png">';
     template +='</div><div class="places-name">' + places[i].name + "</div>";
@@ -59,15 +61,15 @@ $(document).delegate('#' + pages.Places, 'pageshow', function () {
       dataType: 'json',
       error : function (){ document.title='error'; }, 
       success: function (places) {
-        console.log(places);
+        //console.log(places);
         placesCurUser = places;
         markersCurUser = PlacesService.displayPlaces(map, places, true);
         PlacesService.openInfoMarkerArray(map, markersCurUser, placesCurUser);
         PlacesService.setCenter(map, curLatLng);
         renderPlaces(placesCurUser, true);
 
-        console.log("Markers");
-        console.log(markersCurUser);
+        //console.log("Markers");
+        //console.log(markersCurUser);
       }
   });
   $.ajax({
@@ -77,7 +79,7 @@ $(document).delegate('#' + pages.Places, 'pageshow', function () {
       dataType: 'json',
       error : function (){ document.title='error'; }, 
       success: function (places) {
-        console.log(places);
+        //console.log(places);
         placesOtherUsers = places;
         markersOtherUsers = PlacesService.displayPlaces(map, places, false);
         PlacesService.openInfoMarkerArray(map, markersOtherUsers, placesOtherUsers);
@@ -146,7 +148,7 @@ function ratePlace(id){
         window.localStorage.setItem("ratedPlaces"+curUser._id, JSON.stringify(ratedPlaces));
         $("#" + id).text($("#" +id).text() * 1 + 1);
       }
-      console.log(ratedPlaces.places);
+      //console.log(ratedPlaces.places);
     },
     success:function(res){
       console.log(res);
@@ -159,5 +161,35 @@ function ratePlace(id){
   });
 }
 function deletePlace(id){
-  alert(id);
+  placeToDelete = id;
+  for(var i=0;i<placesCurUser.length;i++){
+    if(placesCurUser[i]._id == id){
+      placeToDeleteIndex = i;
+      break;
+    }
+  }
+  $("#popup-delete").popup("open");
+}
+function confirmDelete(){
+  $("#place-" + placeToDelete).remove();
+  $("#popup-delete").popup("close");
+  
+  $.ajax({
+    url: domain + "places" + "?user_id_access_token=" + user_id_access_token,
+    type: "DELETE",
+    data: {placeId: placeToDelete},
+    error:function(xhr, ajaxOptions, thrownError){
+      console.log(xhr.status);
+      console.log(thrownError);
+    },
+    success:function(){
+      placesCurUser.splice(placeToDeleteIndex, 1);
+      PlacesService.deletePlace(markersCurUser[placeToDeleteIndex]);
+      markersCurUser.splice(placeToDeleteIndex, 1);
+    }
+  })
+}
+function cancelDelete(){
+  placeToDelete = "";
+  placeToDeleteIndex = -1;
 }
