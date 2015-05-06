@@ -20,6 +20,16 @@ function openChat(personId, personUsername){
 	$("#chat-name").text(personUsername);
 	$.mobile.changePage("#" + pages.Chat);
 }
+function textAreaKey(){
+	var key = window.event.keyCode;
+	if (key == 13) {
+		sendMessage();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 function changeBadge(friendId, number){
 	$("#friend-" + friendId).text(number);
 }
@@ -28,6 +38,7 @@ function sendMessage(){
 	renderMyMessage(text);
 	renderOtherMessage(text);
 	$("#chat-message").val("");
+	$('#chat-content').scrollTop($('#chat-content')[0].scrollHeight);
 }
 function renderMyMessage(msg){
 	var template = "";

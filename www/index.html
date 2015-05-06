@@ -113,7 +113,7 @@
             </div>
             <div id="chat-buttons">
                 <div class="chat-textarea-container">
-                    <textarea id="chat-message" placeholder="Your message" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"></textarea>
+                    <textarea id="chat-message" onkeypress="textAreaKey()" placeholder="Your message" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"></textarea>
                 </div>
                 <div class="chat-btn-send"><button onclick="sendMessage()">Send</button></div>
             </div>
