@@ -1,1 +1,1 @@
-# Phonegap-DoggyWorld 
+# Phonegap-PupMates
