@@ -1,6 +1,5 @@
 $(document).delegate('#' + pages.Home, 'pageshow', function () {
 	var url = domain + 'achievments/aquired/' + curUser._id;
-	console.log(url);
 
     $.ajax({
 	    url: url,
@@ -10,7 +9,6 @@ $(document).delegate('#' + pages.Home, 'pageshow', function () {
 	    error : function (){ navigator.notification.alert("You must enter a username and password", function() {}); }, 
 	    success: function (achievements) {
 	    	renderAchievements(achievements);
-	    	console.log(achievements);
 	    }
 	});
 });

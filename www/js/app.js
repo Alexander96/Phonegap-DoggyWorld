@@ -1,7 +1,7 @@
 var curUser = null;
 
 var domain = "http://pupmates.net/";
-//domain = "http://localhost:1234/";
+domain = "http://localhost:1234/";
 var user_id_access_token = "";
 
 var pages = {
@@ -63,13 +63,26 @@ function loginForm(){
 	window.localStorage.setItem("password", pass);
 
 	$.ajax({
-	    url: domain + 'login?method=login&returnformat=json',
+
+		url: domain,
+		type: 'GET',
+		success: function (success) {
+
+
+		}
+	});
+
+	$.ajax({
+	    url: domain + 'login',
 	    type: 'POST',
+	    xhrFields: {
+	       withCredentials: true
+	    },
 	    data: user,
 	    error : function (){ document.title='error'; }, 
 	    success: function (data) {
 	    	if(data.success){
-	    		console.log(data.user);
+
 	    		curUser = data.user;
 	    		curUser.profPhoto = domain+"img/profPhoto/" + curUser._id;
 	    		user_id_access_token = curUser._id;
@@ -80,8 +93,6 @@ function loginForm(){
 	    	}
 	    }
 	});
-
-	
 
 	return false;
 }

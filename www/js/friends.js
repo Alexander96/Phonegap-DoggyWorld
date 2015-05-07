@@ -1,5 +1,6 @@
 var chatWithId = "",
-	chatWithUsername = "";
+	chatWithUsername = "",
+	allMessages = {};
 function renderFriendsList(friends){
 	var template='';
 
@@ -19,6 +20,11 @@ function openChat(personId, personUsername){
 	
 	$("#chat-name").text(personUsername);
 	$.mobile.changePage("#" + pages.Chat);
+	$("#chat-content").html('');
+
+	if(!allMessages[chatWithId]) {
+		socketSystem.getMessages(chatWithId);
+	}
 }
 function textAreaKey(){
 	var key = window.event.keyCode;
@@ -36,9 +42,10 @@ function changeBadge(friendId, number){
 function sendMessage(){
 	var text = $("#chat-message").val().trim();
 	renderMyMessage(text);
-	renderOtherMessage(text);
 	$("#chat-message").val("");
 	$('#chat-content').scrollTop($('#chat-content')[0].scrollHeight);
+
+	socketSystem.sendMessage(chatWithId, text);
 }
 function renderMyMessage(msg){
 	var template = "";
