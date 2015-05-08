@@ -6,9 +6,9 @@ function renderFriendsList(friends){
 
 	for(var i=0;i<friends.length;i++){
 		template += '<li data-corners="false" data-shadow="false" data-wrapperels="div"  data-theme="b">';
-        template += '<div onclick="openChat(' + "'" + friends[i]._id+ "'" + "," + "'" + friends[i].username+ "'" + ')" class="ui-btn ui-badge-container">';
+        template += '<div onclick="openChat(' + "'" + friends[i].id+ "'" + "," + "'" + friends[i].username+ "'" + ')" class="ui-btn ui-badge-container">';
         template += '<span>' + friends[i].username + '</span>';
-        template += '<span class="badge" id=' +"'friend-" +friends[i]._id+ "'" + '>0</span>';
+        template += '<span class="badge" id=' +"'friend-" +friends[i].id+ "'" + '>0</span>';
         template += '</div></li>';
 	}
 
@@ -22,9 +22,7 @@ function openChat(personId, personUsername){
 	$.mobile.changePage("#" + pages.Chat);
 	$("#chat-content").html('');
 
-	if(!allMessages[chatWithId]) {
-		socketSystem.getMessages(chatWithId);
-	}
+	socketSystem.getMessages(chatWithId);
 }
 function textAreaKey(){
 	var key = window.event.keyCode;
@@ -45,6 +43,7 @@ function sendMessage(){
 	$("#chat-message").val("");
 	$('#chat-content').scrollTop($('#chat-content')[0].scrollHeight);
 
+	console.log(chatWithId);
 	socketSystem.sendMessage(chatWithId, text);
 }
 function renderMyMessage(msg){
