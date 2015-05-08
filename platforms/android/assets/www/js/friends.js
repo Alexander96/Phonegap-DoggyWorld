@@ -53,8 +53,6 @@ function renderMyMessage(msg){
 }
 function renderOtherMessage(msg){
 	var template = '<div><div class="other-person-message">'+msg+'</div></div><div class="clearfix"></div>';
-	$("#chat-content").append(template);
-	
-	$('#chat-content').scrollTop($('#chat-content')[0].scrollHeight);
+	$("#chat-content").append(template);	
 
 }

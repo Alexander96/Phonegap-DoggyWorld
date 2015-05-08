@@ -1,0 +1,157 @@
+p,h1,h2,h3,h4,h5,img,div,section{
+	margin: 0;
+	padding: 0;
+}
+.logo-container {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 60px;
+}
+
+.logo-container  img {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 500px;
+}
+.text-center{
+	text-align: center;
+}
+#login-page {
+	max-width: 600px;
+	margin: 0 auto;
+
+}
+#login-page div[data-role=content]{
+	position: absolute;
+	top: 42%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.main-left-data, .main-right-data{
+	display: inline-block;
+	vertical-align: top;
+}
+.main-left-data{
+	width: 20%;
+}
+.main-right-data{
+	width: 70%;
+	padding: 8px;
+	text-align: center;
+}
+#main-img-container, #user-main-img-container{
+	padding: 2px;
+	border: 1px solid #eaeaea;
+	background: #fff;
+	border-radius: 5px;
+}
+.text-center{
+	text-align: center;
+}
+#main-img-container img, #user-main-img-container img{
+	margin: 0 auto;
+	width: 100%;
+	max-height: 200px;
+	border-radius: 5px;
+}
+.main-achievement{
+	color: #424345;
+	background: #fff;
+	border: 1px solid #eaeaea;
+	margin-top: 8px;
+	padding: 8px;
+	border-radius: 5px;
+}
+.achievement-author{
+	font-size: 0.9em;
+	color: #0CA2FF;
+}
+.achievement-points{
+	padding-top: 2px;
+	font-size: 0.8em;
+	color: #7ccc31;
+}
+.achievement-description{
+	text-align: center;
+	border-bottom: 1px solid #eaeaea;
+}
+.dog-container{
+	padding: 8px;
+	margin-bottom: 5px;
+	border: 1px solid #eaeaea;
+	border-radius: 5px;
+	background-color: #fff;
+	color: #424345;
+	text-align: center;
+}
+.dog-img-container{
+	width: 100%;
+	margin: 0 auto;
+	max-height: 200px;
+	max-width: 200px;
+	border: 1px solid #eaeaea;
+	border-radius: 5px;
+}
+.dog-img-container img{
+	width: 95%;
+	margin: 0 auto;
+	padding: 5px;
+	border-radius: 8px;
+}
+.dog-field{
+	padding-top: 2px;
+	padding-bottom: 4px;
+}
+.edit-dog-field-title{
+	padding-left: 5px;
+}
+.edit-btn{
+	border-radius: 5px;
+	width: 80%;
+	margin: 0 auto;
+}
+.btn-delete{
+
+}
+.btn-delete {
+	-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f));
+	background:-moz-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+	background:-webkit-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+	background:-o-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+	background:-ms-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f',GradientType=0);
+	background-color:#f24537;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:15px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff !important;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:12px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.btn-delete:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537));
+	background:-moz-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+	background:-webkit-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+	background:-o-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+	background:-ms-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537',GradientType=0);
+	background-color:#c62d1f;
+	border: none;
+}
+.btn-delete:active {
+	position:relative;
+	top:1px;
+}
